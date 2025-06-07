@@ -1,141 +1,96 @@
-# EigenWatch 🛡️📊📡  
-*A Restaking Risk Oracle for Ethereum’s EigenLayer Ecosystem*
+# EigenWatch 🛡️📊📡
+
+*Real-Time Risk Intelligence for Ethereum's Restaking Ecosystem*
 
 ---
 
-## Overview
+## 🧠 What is EigenWatch?
 
-EigenWatch is an open-source risk telemetry and slashing alert system designed for Ethereum’s restaking ecosystem, specifically within the EigenLayer framework.
+**EigenWatch** is an open-source telemetry, alerting, and oracle infrastructure purpose-built for Ethereum's **EigenLayer** ecosystem. Our mission is to provide restaking participants—validators, LRTs, AVSs, and insurance protocols—with **transparent, real-time visibility** into slashing risk, validator behavior, and correlated exposures.
 
-It provides:
-- Validator risk scoring
-- Slashing alert feeds
-- Validator reputation indexing
-- APIs and oracles for consumption by stakers, AVSs, LRTs, and insurance protocols
+We are building the **first modular risk scoring oracle and reputation index** for restaking, making systemic risk intelligible and actionable.
 
-This project empowers protocols and stakers with real-time insights into operator behavior and systemic risks in the EigenLayer universe.
+> Read our [Whitepaper](https://www.notion.so/EigenWatch-WhitePaper-2046775048bc8035b227cdae8c6f6f43) for an in-depth technical overview.
 
 ---
 
-## ✨ Key Features
+## 🏗️ Organizational Structure
 
-- 🧠 **Risk Scoring Oracle**: Tracks validator performance across AVSs, uptime, and slashing events.
-- 📉 **Slashing Alerts API**: Sends real-time alerts on validator slashing.
-- 📊 **Validator Reputation Index**: Combines historical telemetry and correlated exposures.
-- 🖥️ **Dashboard Interface**: For protocols, stakers, and researchers to explore risk data.
+This GitHub organization hosts several focused repositories, each representing a key component of the EigenWatch system:
 
----
+| Repository | Description |
+|-----------|-------------|
+| [`smartcontract`](https://github.com/EigenWatch/smartcontract) | Solidity smart contracts for oracle publishing, reputation indexing, and AVS integration. Tested using TypeScript-based tooling. |
+| [`website`](https://github.com/EigenWatch/website) | The official company website. Built with Next.js and TypeScript. |
+| [`dapp`](https://github.com/EigenWatch/dapp) | The main user-facing dashboard for exploring validator risk, reputation, and telemetry data. Built with Next.js and Tailwind CSS. |
+| [`backend`](https://github.com/EigenWatch/backend) | NestJS backend service for data ingestion, scoring, webhook delivery, and API exposure. Acts as the core analytics and orchestration layer. |
 
-## 🧱 Architecture
-
-+------------------+
-| Data Collectors |
-| (AVS APIs, EL) |
-+--------+---------+
-|
-v
-+--------+---------+
-| Analytics Engine|
-| (Risk Scoring, |
-| Correlation) |
-+--------+---------+
-|
-v
-+--------+---------+ +-----------------+
-| Oracle Publisher |----->| Onchain Feed |
-+--------+---------+ +-----------------+
-
-markdown
-Copy
-Edit
-     |
-     v
-+-------------------+
-| Dashboard / API |
-| REST + Webhooks |
-+-------------------+
-
-yaml
-Copy
-Edit
+> More repositories will be added as the project evolves (e.g., SDKs, subgraphs, AVS-specific adapters).
 
 ---
 
-## 🛠️ Technologies
+## 🚀 Vision
 
-- **Languages**: TypeScript, Rust (WASM module), Solidity (Oracle publishing)
-- **Backend**: Node.js (Telemetry Fetchers), PostgreSQL (data storage)
-- **Frontend**: Next.js, TailwindCSS
-- **Smart Contracts**: Solidity / EigenLayer-compatible
-- **Oracle Publishing**: Chainlink or EigenLayer-native
+Restaking unlocks capital efficiency but also introduces opaque risks. We believe that **risk-aware restaking** is critical for Ethereum's long-term decentralization and security.
 
----
+### Our Goals:
 
-## 🧪 MVP Scope
-
-- [x] Validator telemetry collectors (off-chain)
-- [x] Slashing alert webhook + sample consumers
-- [x] Risk scoring script
-- [ ] MVP dashboard (Next.js)
-- [ ] Oracle publishing contract (testnet)
+- Deliver **slashing alert APIs** and onchain feeds
+- Maintain a **validator reputation index**
+- Provide a **risk scoring oracle** for use in DeFi, staking, and insurance
+- Enable **ecosystem-wide integration** with LRTs, AVSs, and risk tools
 
 ---
 
-## 📦 Installation
+## 📡 Core Components
 
-```bash
-git clone https://github.com/eigenwatch/eigenwatch.git
-cd eigenwatch
-yarn install
+- **Risk Scoring Oracle**: Quantifies validator risk based on performance, uptime, AVS behavior, and slashing history.
+- **Slashing Alerts Feed**: Real-time webhook + oracle notification system for validator misbehavior.
+- **Reputation Index**: A long-term, data-driven measure of validator reliability and exposure.
+- **Telemetry Dashboard**: Frontend for restakers and protocols to interact with risk data.
 
-Would you like this exported as a downloadable `README.md`, added to a GitHub repo, or paired with a proper `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`?
+---
 
-Run Data Collectors
-bash
-yarn collectors:start
-Run Dashboard (Dev)
-bash
-Copy
+## 🗺️ Roadmap Snapshot (2025–2026)
 
-cd packages/dashboard
-yarn dev
+| Timeline | Milestones |
+|----------|------------|
+| **Q3 2025** | MVP Dashboard, Initial Risk Engine |
+| **Q4 2025** | Oracle Launch (Top 100 Validators), Slashing Alerts API |
+| **Q1 2026** | Reputation Index Live, Ecosystem Partnerships |
+| **Q2 2026** | Insurance Experiments, Ecosystem-wide API Access |
 
+---
 
- API & Oracle Specs
-REST API
-http
-Copy
-Edit
-GET /api/v1/validators/:address/score
-GET /api/v1/alerts/slashing
+## 💡 Why EigenWatch?
 
+- 🛠️ **Modular**: APIs and oracles that integrate seamlessly into LRTs, AVSs, and staking platforms.
+- 📊 **Data-Rich**: Pulls from AVS telemetry, Ethereum, and EigenLayer participation.
+- 🔗 **Onchain + Offchain**: Oracle-ready feeds + APIs for offchain consumers.
+- 🤝 **Ecosystem Native**: Built exclusively for Ethereum restaking and EigenLayer participants.
+- 🧩 **Composable**: Enables downstream tooling like insurance underwriting, AVS scoring, and staking strategies.
 
+---
 
-Webhooks
-json
-Copy
-Edit
-{
-  "event": "SLASHING",
-  "validator": "0xabc...",
-  "timestamp": "2025-08-15T13:02:03Z",
-  "source": "AVS-X"
-}
-Onchain Oracle Output
-solidity
-Copy
-Edit
-mapping(address => uint256) public riskScore;
-📄 License
+## 📬 Get Involved
+
+We welcome contributors from the Ethereum, DeFi, and validator communities.
+
+- Check out [`CONTRIBUTING.md`](https://github.com/EigenWatch/.github/blob/main/CONTRIBUTING.md)
+- Reach us via [team@eigenwatch.xyz](mailto:team@eigenwatch.xyz)
+- Follow us on [Twitter @eigenwatch](https://twitter.com/eigenwatch)
+
+---
+
+## 📄 License
+
 MIT License © EigenWatch Contributors
 
-👥 Contributing
-We welcome contributors from the Ethereum, DeFi, and validator communities! Please see CONTRIBUTING.md to get started.
+---
 
-🌍 Links
-Twitter: @eigenwatch
+## 🔗 Resources
 
-Docs: https://eigenwatch.xyz/docs
+- 📜 [Whitepaper](https://www.notion.so/EigenWatch-WhitePaper-2046775048bc8035b227cdae8c6f6f43)
+- 🧰 [GitHub Repos](https://github.com/EigenWatch)
 
-Contact: team@eigenwatch.xyz
-
+> _Transparency is the foundation of trust. At EigenWatch, we make restaking risk measurable and open._
